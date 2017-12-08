@@ -1,0 +1,10 @@
+// .prettierrc
+{
+  "printWidth": 120,
+  "parser": "typescript",
+  "semi": false,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "useTabs": false,
+  "singleQuote": false
+}
