@@ -1,1 +1,1 @@
-export { InitiativeOrder, Character } from "./InitiativeOrder"
+export { InitiativeOrder } from "./InitiativeOrder"

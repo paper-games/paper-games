@@ -4,31 +4,26 @@ import "./App.css"
 import { Logger } from "../../tracking/error-logger"
 import { EventTracker } from "../../tracking/event-tracker"
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
-import { InitiativeOrder, Character } from "../InitiativeOrder"
+import { InitiativeOrder } from "../InitiativeOrder"
+import { Character } from "../../models/Character"
+import { AppState } from "../../db"
 
 interface Props {
   logger: Logger
   tracker: EventTracker
+  state: AppState
 }
 
 interface State {
   characters: Character[]
 }
-const characters: Character[] = [
-  { name: "Skeleton 1", initiative: 10 },
-  { name: "Skeleton 2", initiative: 8 },
-  { name: "Skeleton 3", initiative: 15 },
-  { name: "Samjo Santo", initiative: 8 },
-]
 
 export class App extends React.Component<Props, State> {
   static childContextTypes = {
     tracker: PropTypes.any,
     logger: PropTypes.any,
   }
-  state = {
-    characters,
-  }
+  state = this.props.state
   componentDidCatch(e: Error) {
     this.props.logger.error(e)
   }

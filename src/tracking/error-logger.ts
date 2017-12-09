@@ -1,5 +1,6 @@
 interface Raven {
   config(url: string): RavenInstance
+  captureException(e: Error, extra?: any): void
 }
 
 interface RavenInstance {
@@ -9,7 +10,7 @@ interface RavenInstance {
 declare const Raven: Raven
 
 export class Logger {
-  error(error: Error) {
+  error(error: Error, extra?: any) {
     // tslint:disable-next-line
     console.error(error)
   }
@@ -24,9 +25,8 @@ export class RavenLogger extends Logger {
     this.logger = Raven.config(RAVEN_PROD)
     this.logger.install()
   }
-  error(error: Error) {
-    // tslint:disable-next-line
-    console.error(error)
+  error(e: Error, extra?: any) {
+    Raven.captureException(e, extra)
   }
 }
 

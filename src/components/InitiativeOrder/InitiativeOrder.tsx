@@ -1,10 +1,6 @@
 import * as React from "react"
 import { Table, TableHeader, TableRow, TableHeaderColumn, TableBody, TableRowColumn } from "material-ui"
-
-export interface Character {
-  name: string
-  initiative: number
-}
+import { Character } from "../../models/Character"
 
 interface Props {
   characters: Character[]

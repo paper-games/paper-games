@@ -5,10 +5,14 @@ import registerServiceWorker from "./registerServiceWorker"
 import "./index.css"
 import { createLogger } from "./tracking/error-logger"
 import { initializeEventTracking } from "./tracking/event-tracker"
+import { loadState } from "./db"
 
-let logger = createLogger()
-let tracker = initializeEventTracking()
+const logger = createLogger()
+const tracker = initializeEventTracking()
+const initialState = loadState(logger)
 
-ReactDOM.render(<App logger={logger} tracker={tracker} />, document.getElementById("root") as HTMLElement)
+const targetEl: Element | null = document.getElementById("root") as HTMLElement
+
+ReactDOM.render(<App logger={logger} tracker={tracker} state={initialState} />, targetEl)
 
 registerServiceWorker()
