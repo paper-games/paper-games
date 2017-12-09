@@ -4,8 +4,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/material-ui": "^0.18.5",
     "@types/prop-types": "^15.5.2",
     "gh-pages": "^1.1.0",
+    "material-ui": "^0.20.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
