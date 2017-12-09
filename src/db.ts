@@ -5,6 +5,8 @@ export interface AppState {
   characters: Character[]
 }
 
+const LOCAL_STORAGE_KEY: string = "paper-games"
+
 const DEFAULT_APP_DATA: AppState = {
   characters: [
     { name: "Skeleton 1", initiative: 10 },
@@ -15,7 +17,7 @@ const DEFAULT_APP_DATA: AppState = {
 }
 
 export function loadState(logger: Logger): AppState {
-  let itemJSON = localStorage.getItem("paper-games")
+  let itemJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
 
   try {
     if (itemJSON) {
@@ -26,4 +28,10 @@ export function loadState(logger: Logger): AppState {
   }
 
   return DEFAULT_APP_DATA
+}
+
+export function saveState(state: AppState, logger: Logger): void {
+  let itemJSON = JSON.stringify(state)
+
+  localStorage.setItem(LOCAL_STORAGE_KEY, itemJSON)
 }
