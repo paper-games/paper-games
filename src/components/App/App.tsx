@@ -11,6 +11,9 @@ interface Props {
   tracker: EventTracker
 }
 
+interface State {
+  characters: Character[]
+}
 const characters: Character[] = [
   { name: "Skeleton 1", initiative: 10 },
   { name: "Skeleton 2", initiative: 8 },
@@ -18,10 +21,13 @@ const characters: Character[] = [
   { name: "Samjo Santo", initiative: 8 },
 ]
 
-export class App extends React.Component<Props, {}> {
+export class App extends React.Component<Props, State> {
   static childContextTypes = {
     tracker: PropTypes.any,
     logger: PropTypes.any,
+  }
+  state = {
+    characters,
   }
   componentDidCatch(e: Error) {
     this.props.logger.error(e)
@@ -39,7 +45,7 @@ export class App extends React.Component<Props, {}> {
             <h2>Initiative Order</h2>
           </div>
           <p className="App-intro" />
-          <InitiativeOrder characters={characters} />
+          <InitiativeOrder characters={this.state.characters} />
         </div>
       </MuiThemeProvider>
     )

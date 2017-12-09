@@ -10,7 +10,11 @@ interface Props {
   characters: Character[]
 }
 
-export class InitiativeOrder extends React.Component<Props, {}> {
+interface State {
+  //
+}
+
+export class InitiativeOrder extends React.Component<Props, State> {
   render() {
     return (
       <Table selectable={false}>
@@ -21,7 +25,7 @@ export class InitiativeOrder extends React.Component<Props, {}> {
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false}>
-          {this.props.characters.map(character => (
+          {this.props.characters.sort(byInitiative).map(character => (
             <TableRow key={character.name} selectable={false}>
               <TableRowColumn> {character.initiative} </TableRowColumn>
               <TableRowColumn> {character.name} </TableRowColumn>
@@ -31,4 +35,14 @@ export class InitiativeOrder extends React.Component<Props, {}> {
       </Table>
     )
   }
+}
+
+function byInitiative(a: Character, b: Character) {
+  if (a.initiative < b.initiative) {
+    return 1
+  }
+  if (a.initiative > b.initiative) {
+    return -1
+  }
+  return 0
 }
