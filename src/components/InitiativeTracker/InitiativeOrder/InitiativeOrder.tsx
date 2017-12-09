@@ -11,6 +11,10 @@ interface State {
   //
 }
 
+const initColStyle = { width: "10%" }
+const nameColStyle = { width: "60%" }
+const actionColStyle = { width: "30%" }
+
 export class InitiativeOrder extends React.Component<Props, State> {
   render() {
     return (
@@ -18,8 +22,9 @@ export class InitiativeOrder extends React.Component<Props, State> {
         <Table selectable={false}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
-              <TableHeaderColumn>Init</TableHeaderColumn>
-              <TableHeaderColumn>Name</TableHeaderColumn>
+              <TableHeaderColumn style={initColStyle}>Init</TableHeaderColumn>
+              <TableHeaderColumn style={nameColStyle}>Name</TableHeaderColumn>
+              <TableHeaderColumn style={actionColStyle}>Actions</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
@@ -40,12 +45,12 @@ class CharacterRow extends React.Component<{ character: Character; remove: (char
     let { character, remove } = this.props
     return (
       <TableRow key={character.name} selectable={false}>
-        <TableRowColumn> {character.initiative} </TableRowColumn>
-        <TableRowColumn> {character.name} </TableRowColumn>
-        <TableRowColumn>
+        <TableRowColumn style={initColStyle}> {character.initiative} </TableRowColumn>
+        <TableRowColumn style={nameColStyle}> {character.name} </TableRowColumn>
+        <TableRowColumn style={actionColStyle}>
           <FlatButton onClick={() => remove(character)} secondary={true}>
             Remove
-          </FlatButton>{" "}
+          </FlatButton>
         </TableRowColumn>
       </TableRow>
     )
