@@ -3,10 +3,12 @@ import * as ReactDOM from "react-dom"
 import App from "./App"
 import registerServiceWorker from "./registerServiceWorker"
 import "./index.css"
-import { createLogger } from "./error-logger"
+import { createLogger } from "./tracking/error-logger"
+import { initializeEventTracking } from "./tracking/event-tracker"
 
 let logger = createLogger()
+let tracker = initializeEventTracking()
 
-ReactDOM.render(<App logger={logger} />, document.getElementById("root") as HTMLElement)
+ReactDOM.render(<App logger={logger} tracker={tracker} />, document.getElementById("root") as HTMLElement)
 
 registerServiceWorker()
