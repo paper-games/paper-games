@@ -3,7 +3,7 @@ declare const mixpanel: EventTracker
 let MIXPANEL_TOKEN = "bd3bd0c2a442aa701def36db0d1c3195"
 
 export function initializeEventTracking() {
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV === "production") {
     mixpanel.init(MIXPANEL_TOKEN)
     return mixpanel
   }
