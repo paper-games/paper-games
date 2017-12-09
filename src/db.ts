@@ -9,10 +9,10 @@ const LOCAL_STORAGE_KEY: string = "paper-games"
 
 const DEFAULT_APP_DATA: AppState = {
   characters: [
-    { name: "Skeleton 1", initiative: 10 },
-    { name: "Skeleton 2", initiative: 8 },
-    { name: "Skeleton 3", initiative: 15 },
-    { name: "Samjo Santo", initiative: 8 },
+    new Character({ name: "Skeleton 1", initiative: 10 }),
+    new Character({ name: "Skeleton 2", initiative: 8 }),
+    new Character({ name: "Skeleton 3", initiative: 15 }),
+    new Character({ name: "Samjo Santo", initiative: 8 }),
   ],
 }
 

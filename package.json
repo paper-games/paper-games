@@ -6,12 +6,14 @@
   "dependencies": {
     "@types/material-ui": "^0.18.5",
     "@types/prop-types": "^15.5.2",
+    "@types/uuid": "^3.4.3",
     "gh-pages": "^1.1.0",
     "material-ui": "^0.20.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts-ts": "2.8.0"
+    "react-scripts-ts": "2.8.0",
+    "uuid": "^3.1.0"
   },
   "scripts": {
     "predeploy": "npm run build",

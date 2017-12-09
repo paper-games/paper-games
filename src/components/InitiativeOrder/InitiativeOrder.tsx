@@ -1,9 +1,10 @@
 import * as React from "react"
-import { Table, TableHeader, TableRow, TableHeaderColumn, TableBody, TableRowColumn } from "material-ui"
+import { Table, TableHeader, TableRow, TableHeaderColumn, TableBody, TableRowColumn, FlatButton } from "material-ui"
 import { Character } from "../../models/Character"
 
 interface Props {
   characters: Character[]
+  removeCharacter(character: Character): void
 }
 
 interface State {
@@ -23,20 +24,27 @@ export class InitiativeOrder extends React.Component<Props, State> {
         <TableBody displayRowCheckbox={false}>
           {this.props.characters
             .sort(byInitiative)
-            .map((character, i) => <CharacterRow key={i} character={character} />)}
+            .map((character, i) => (
+              <CharacterRow key={character.uuid} character={character} remove={this.props.removeCharacter} />
+            ))}
         </TableBody>
       </Table>
     )
   }
 }
 
-class CharacterRow extends React.Component<{ character: Character }, {}> {
+class CharacterRow extends React.Component<{ character: Character; remove: (character: Character) => void }, {}> {
   render() {
-    let { character } = this.props
+    let { character, remove } = this.props
     return (
       <TableRow key={character.name} selectable={false}>
         <TableRowColumn> {character.initiative} </TableRowColumn>
         <TableRowColumn> {character.name} </TableRowColumn>
+        <TableRowColumn>
+          <FlatButton onClick={() => remove(character)} secondary>
+            Remove
+          </FlatButton>{" "}
+        </TableRowColumn>
       </TableRow>
     )
   }

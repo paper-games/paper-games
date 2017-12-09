@@ -31,6 +31,11 @@ export class App extends React.Component<Props, State> {
     let { logger, tracker } = this.props
     return { logger, tracker }
   }
+  removeCharacter = (targetCharacter: Character) => {
+    this.setState(({ characters }) => ({
+      characters: characters.filter(character => character.uuid !== targetCharacter.uuid),
+    }))
+  }
   render() {
     return (
       <MuiThemeProvider>
@@ -40,7 +45,7 @@ export class App extends React.Component<Props, State> {
             <h2>Initiative Order</h2>
           </div>
           <p className="App-intro" />
-          <InitiativeOrder characters={this.state.characters} />
+          <InitiativeOrder characters={this.state.characters} removeCharacter={this.removeCharacter} />
         </div>
       </MuiThemeProvider>
     )
