@@ -25,14 +25,23 @@ export class InitiativeOrder extends React.Component<Props, State> {
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false}>
-          {this.props.characters.sort(byInitiative).map(character => (
-            <TableRow key={character.name} selectable={false}>
-              <TableRowColumn> {character.initiative} </TableRowColumn>
-              <TableRowColumn> {character.name} </TableRowColumn>
-            </TableRow>
-          ))}
+          {this.props.characters
+            .sort(byInitiative)
+            .map((character, i) => <CharacterRow key={i} character={character} />)}
         </TableBody>
       </Table>
+    )
+  }
+}
+
+class CharacterRow extends React.Component<{ character: Character }, {}> {
+  render() {
+    let { character } = this.props
+    return (
+      <TableRow key={character.name} selectable={false}>
+        <TableRowColumn> {character.initiative} </TableRowColumn>
+        <TableRowColumn> {character.name} </TableRowColumn>
+      </TableRow>
     )
   }
 }
