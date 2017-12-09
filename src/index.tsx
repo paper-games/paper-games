@@ -5,8 +5,8 @@ import registerServiceWorker from "./registerServiceWorker"
 import "./index.css"
 import { createLogger } from "./error-logger"
 
-createLogger()
+let logger = createLogger()
 
-ReactDOM.render(<App />, document.getElementById("root") as HTMLElement)
+ReactDOM.render(<App logger={logger} />, document.getElementById("root") as HTMLElement)
 
 registerServiceWorker()

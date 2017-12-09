@@ -1,9 +1,17 @@
 import * as React from "react"
 import "./App.css"
+import { Logger } from "./error-logger"
 
 const logo = require("./logo.svg")
 
-class App extends React.Component {
+interface Props {
+  logger: Logger
+}
+
+class App extends React.Component<Props, {}> {
+  componentDidCatch(e: Error) {
+    this.props.logger.error(e)
+  }
   render() {
     return (
       <div className="App">

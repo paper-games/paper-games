@@ -1,10 +1,14 @@
 interface Raven {
-  config(url: string): { install(): void }
+  config(url: string): RavenInstance
+}
+
+interface RavenInstance {
+  install(): void
 }
 
 declare const Raven: Raven
 
-class Logger {
+export class Logger {
   error(error: Error) {
     // tslint:disable-next-line
     console.error(error)
@@ -14,12 +18,11 @@ class Logger {
 const RAVEN_PROD: string = "https://c57f639eb38249bca7ef3eb439524b84@sentry.io/256855"
 
 export class RavenLogger extends Logger {
+  logger: RavenInstance
   constructor() {
     super()
-    if (process.env.NODE_ENV !== "development") {
-      let logger = Raven.config(RAVEN_PROD)
-      logger.install()
-    }
+    this.logger = Raven.config(RAVEN_PROD)
+    this.logger.install()
   }
   error(error: Error) {
     // tslint:disable-next-line
@@ -28,7 +31,7 @@ export class RavenLogger extends Logger {
 }
 
 export function createLogger(): Logger {
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV !== "development") {
     return new RavenLogger()
   }
 
