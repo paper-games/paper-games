@@ -6,6 +6,7 @@ declare const Raven: Raven
 
 class Logger {
   error(error: Error) {
+    // tslint:disable-next-line
     console.error(error)
   }
 }
@@ -15,13 +16,13 @@ const RAVEN_PROD: string = "https://c57f639eb38249bca7ef3eb439524b84@sentry.io/2
 export class RavenLogger extends Logger {
   constructor() {
     super()
-    if (process.env.NODE_ENV != "development") {
+    if (process.env.NODE_ENV !== "development") {
       let logger = Raven.config(RAVEN_PROD)
       logger.install()
     }
   }
   error(error: Error) {
-    // tslint:disable
+    // tslint:disable-next-line
     console.error(error)
   }
 }
