@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Table, TableHeader, TableRow, TableHeaderColumn, TableBody, TableRowColumn, FlatButton } from "material-ui"
-import { Character } from "../../models/Character"
+import { Character } from "../../../models/Character"
 
 interface Props {
   characters: Character[]
@@ -41,7 +41,7 @@ class CharacterRow extends React.Component<{ character: Character; remove: (char
         <TableRowColumn> {character.initiative} </TableRowColumn>
         <TableRowColumn> {character.name} </TableRowColumn>
         <TableRowColumn>
-          <FlatButton onClick={() => remove(character)} secondary>
+          <FlatButton onClick={() => remove(character)} secondary={true}>
             Remove
           </FlatButton>{" "}
         </TableRowColumn>
