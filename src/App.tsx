@@ -3,13 +3,24 @@ import * as React from "react"
 import "./App.css"
 import { Logger } from "./tracking/error-logger"
 import { EventTracker } from "./tracking/event-tracker"
-
-const logo = require("./logo.svg")
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
+import { Table, TableBody, TableHeaderColumn, TableHeader, TableRow, TableRowColumn } from "material-ui"
 
 interface Props {
   logger: Logger
   tracker: EventTracker
 }
+
+interface Character {
+  name: string
+  initiative: number
+}
+const characters: Character[] = [
+  { name: "Skeleton 1", initiative: 10 },
+  { name: "Skeleton 2", initiative: 8 },
+  { name: "Skeleton 3", initiative: 15 },
+  { name: "Samjo Santo", initiative: 8 },
+]
 
 class App extends React.Component<Props, {}> {
   static childContextTypes = {
@@ -25,15 +36,30 @@ class App extends React.Component<Props, {}> {
   }
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Paper Games</h2>
+      <MuiThemeProvider>
+        <div className="App">
+          <div className="App-header">
+            <h2>Initiative Order</h2>
+          </div>
+          <p className="App-intro" />
+          <Table selectable={false}>
+            <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+              <TableRow>
+                <TableHeaderColumn>Init</TableHeaderColumn>
+                <TableHeaderColumn>Name</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody displayRowCheckbox={false}>
+              {characters.map(character => (
+                <TableRow key={character.name} selectable={false}>
+                  <TableRowColumn> {character.initiative} </TableRowColumn>
+                  <TableRowColumn> {character.name} </TableRowColumn>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
+      </MuiThemeProvider>
     )
   }
 }
