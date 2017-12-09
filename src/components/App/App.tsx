@@ -15,6 +15,7 @@ import { Character } from "../../models/Character"
 // Components
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
 import { InitiativeTracker } from "../InitiativeTracker/index"
+import { AppBar } from "material-ui"
 
 interface Props {
   logger: Logger
@@ -41,14 +42,8 @@ export class App extends React.Component<Props, State> {
   render() {
     return (
       <MuiThemeProvider>
-        <div className="App">
-          <div className="App-header">
-            <h1>Paper Games</h1>
-            <h2>Initiative Order</h2>
-          </div>
-          <p className="App-intro" />
-          <InitiativeTracker characters={this.props.state.characters} />
-        </div>
+        <AppBar title="PaperGames: Initiative Tracker" iconClassNameRight="muidocs-icon-navigation-expand-more" />
+        <InitiativeTracker characters={this.props.state.characters} />
       </MuiThemeProvider>
     )
   }

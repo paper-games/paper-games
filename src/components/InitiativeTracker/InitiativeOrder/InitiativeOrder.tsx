@@ -14,21 +14,23 @@ interface State {
 export class InitiativeOrder extends React.Component<Props, State> {
   render() {
     return (
-      <Table selectable={false}>
-        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-          <TableRow>
-            <TableHeaderColumn>Init</TableHeaderColumn>
-            <TableHeaderColumn>Name</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody displayRowCheckbox={false}>
-          {this.props.characters
-            .sort(byInitiative)
-            .map((character, i) => (
-              <CharacterRow key={character.uuid} character={character} remove={this.props.removeCharacter} />
-            ))}
-        </TableBody>
-      </Table>
+      <div>
+        <Table selectable={false}>
+          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+            <TableRow>
+              <TableHeaderColumn>Init</TableHeaderColumn>
+              <TableHeaderColumn>Name</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody displayRowCheckbox={false}>
+            {this.props.characters
+              .sort(byInitiative)
+              .map((character, i) => (
+                <CharacterRow key={character.uuid} character={character} remove={this.props.removeCharacter} />
+              ))}
+          </TableBody>
+        </Table>
+      </div>
     )
   }
 }
