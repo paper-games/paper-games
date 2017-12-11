@@ -3,9 +3,12 @@ import { Character } from "../../models/Character"
 import { CharacterForm } from "./CharacterForm"
 import { InitiativeOrder } from "./InitiativeOrder"
 import { EventTracker } from "../../tracking/event-tracker"
+import { saveState } from "../../db"
+import { Logger } from "../../tracking/error-logger"
 
 interface Props {
   tracker: EventTracker
+  logger: Logger
   characters: Character[]
 }
 
@@ -22,14 +25,20 @@ export class InitiativeTracker extends React.Component<Props, State> {
   state = {
     characters: [...this.props.characters],
   }
+  saveState = () => saveState(this.state, this.props.logger)
   removeCharacter = (targetCharacter: Character) => {
-    this.setState(({ characters }) => ({
-      characters: characters.filter(character => character.uuid !== targetCharacter.uuid),
-    }))
+    this.setState(
+      ({ characters }) => ({
+        characters: characters.filter(character => character.uuid !== targetCharacter.uuid),
+      }),
+      this.saveState
+    )
+
     this.props.tracker.track(InitiativeTrackerEvents.REMOVE_CHARACTER, { character: targetCharacter })
   }
   addCharacter = (character: Character) => {
-    this.setState(({ characters }) => ({ characters: [...characters, character] }))
+    this.setState(({ characters }) => ({ characters: [...characters, character] }), this.saveState)
+
     this.props.tracker.track(InitiativeTrackerEvents.ADD_CHARACTER, { character })
   }
   render() {
