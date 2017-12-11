@@ -8,12 +8,7 @@ export interface AppState {
 const LOCAL_STORAGE_KEY: string = "paper-games"
 
 const DEFAULT_APP_DATA: AppState = {
-  characters: [
-    new Character({ name: "Skeleton 1", initiative: 10 }),
-    new Character({ name: "Skeleton 2", initiative: 8 }),
-    new Character({ name: "Skeleton 3", initiative: 15 }),
-    new Character({ name: "Samjo Santo", initiative: 8 }),
-  ],
+  characters: [],
 }
 
 export function loadState(logger: Logger): AppState {

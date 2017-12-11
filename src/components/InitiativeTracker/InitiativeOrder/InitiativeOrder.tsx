@@ -17,6 +17,7 @@ const actionColStyle = { width: "30%" }
 
 export class InitiativeOrder extends React.Component<Props, State> {
   render() {
+    const { characters } = this.props
     return (
       <div>
         <Table>
@@ -28,17 +29,29 @@ export class InitiativeOrder extends React.Component<Props, State> {
             </TableRow>
           </TableHead>
           <TableBody>
-            {this.props.characters
-              .sort(byInitiative)
-              .map((character, i) => (
-                <CharacterRow key={character.uuid} character={character} remove={this.props.removeCharacter} />
-              ))}
+            {characters.length ? (
+              characters
+                .sort(byInitiative)
+                .map((character, i) => (
+                  <CharacterRow key={character.uuid} character={character} remove={this.props.removeCharacter} />
+                ))
+            ) : (
+              <Placeholder />
+            )}
           </TableBody>
         </Table>
       </div>
     )
   }
 }
+
+const Placeholder = () => (
+  <TableRow>
+    <TableCell colSpan={3} style={{ textAlign: "center" }}>
+      <em>Use the form above to add a character to the list.</em>
+    </TableCell>
+  </TableRow>
+)
 
 class CharacterRow extends React.Component<{ character: Character; remove: (character: Character) => void }, {}> {
   render() {
