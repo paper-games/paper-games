@@ -63,7 +63,7 @@ export class CharacterForm extends React.Component<Props, State> {
             value={String(this.state.initiative)}
             onChange={this.setInitiative}
           />
-          <Button onClick={this.submit} style={{ marginLeft: "20px" }}>
+          <Button raised color="primary" onClick={this.submit} style={{ marginLeft: "20px" }}>
             Add
           </Button>
         </form>
