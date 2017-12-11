@@ -33,16 +33,16 @@ yarn start
 ## Roadmap
 
 ### Version 1.0: Basic Initiative Tracker
-  * A serverless initiative tracker
-  * Local Only
-    * All user data stored in `localStorage`
-    * No authentication
-  * Single Encounter
-  * Add/Remove Characters from the Initiative Order
-  * Character
-    * Name
-    * Initiative
-  * Initiatve Order is automatically sorted
+  - [X] A serverless initiative tracker
+  - [X] ---Local Only---
+    - [X] All user data stored in `localStorage`
+    - [X] No authentication
+  - [X] Single Encounter
+  - [X] Add/Remove Characters from the Initiative Order
+  - [X] Character
+    - [X] Name
+    - [X] Initiative
+  - [X] Initiatve Order is automatically sorted
   
 ### Future Features
 * Initiative
