@@ -13,49 +13,67 @@ import { AppState } from "../../db"
 import { Character } from "../../models/Character"
 
 // Components
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
 import { InitiativeTracker } from "../InitiativeTracker"
-import { AppBar, IconButton, SvgIcon } from "material-ui"
+import { AppBar, IconButton, SvgIcon, Toolbar, Typography, withStyles } from "material-ui"
 
 interface Props {
   logger: Logger
   tracker: EventTracker
   state: AppState
+  classes: any
 }
 
 interface State {
   characters: Character[]
 }
 
-export class App extends React.Component<Props, State> {
-  static childContextTypes = {
-    tracker: PropTypes.any,
-    logger: PropTypes.any,
-  }
-  componentDidCatch(e: Error) {
-    this.props.logger.error(e)
-  }
-  getChildContext() {
-    let { logger, tracker } = this.props
-    return { logger, tracker }
-  }
-  render() {
-    return (
-      <MuiThemeProvider>
-        <AppBar
-          title="PaperGames: Initiative Tracker"
-          iconElementLeft={<div />}
-          iconElementRight={
-            <IconButton onClick={() => window.open("http://github.com/paper-games/paper-games", "_blank")}>
-              <GitHubIcon />
-            </IconButton>
-          }
-        />
-        <InitiativeTracker characters={this.props.state.characters} />
-      </MuiThemeProvider>
-    )
-  }
+const styles = {
+  root: {
+    width: "100%",
+  },
+  flex: {
+    flex: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
 }
+
+export const App = withStyles(styles)(
+  class App extends React.Component<Props, State> {
+    static childContextTypes = {
+      tracker: PropTypes.any,
+      logger: PropTypes.any,
+    }
+    componentDidCatch(e: Error) {
+      this.props.logger.error(e)
+    }
+    getChildContext() {
+      let { logger, tracker } = this.props
+      return { logger, tracker }
+    }
+    render() {
+      let { classes } = this.props
+      return (
+        <div>
+          <AppBar position="static">
+            <Toolbar>
+              <Typography type="title" color="inherit" className={classes.flex}>
+                PaperGames: Initiative Tracker
+              </Typography>
+              <IconButton onClick={() => window.open("http://github.com/paper-games/paper-games", "_blank")}>
+                <GitHubIcon />
+              </IconButton>
+            </Toolbar>
+          </AppBar>
+
+          <InitiativeTracker characters={this.props.state.characters} />
+        </div>
+      )
+    }
+  }
+)
 
 const GitHubIcon = () => (
   <SvgIcon style={{ color: "white" }}>

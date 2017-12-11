@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Character } from "../../../models/Character"
-import { TextField, RaisedButton } from "material-ui"
+import { Input, Button } from "material-ui"
 
 interface Props {
   submit(character: Character): void
@@ -19,8 +19,8 @@ export class CharacterForm extends React.Component<Props, State> {
     e.preventDefault()
     this.props.submit(new Character(this.state))
   }
-  setName = (_e: any, name: string) => this.setState(() => ({ name }))
-  setInitiative = (_e: any, initiative: string) => this.setState(() => ({ initiative: Number(initiative) }))
+  setName = (e: any) => this.setState(() => ({ name: e.target.value }))
+  setInitiative = (e: any) => this.setState(() => ({ initiative: Number(e.target.value) }))
 
   render() {
     return (
@@ -35,17 +35,11 @@ export class CharacterForm extends React.Component<Props, State> {
       >
         <form onSubmit={this.submit} style={{ marginLeft: "auto", marginRight: "auto" }}>
           <h2>Add Character</h2>
-          <TextField floatingLabelText="Name" name="name" value={this.state.name} onChange={this.setName} />
-          <TextField
-            floatingLabelText="Initiative"
-            name="initiative"
-            type="number"
-            value={String(this.state.initiative)}
-            onChange={this.setInitiative}
-          />
-          <RaisedButton onClick={this.submit} style={{ marginLeft: "20px" }}>
+          <Input name="name" value={this.state.name} onChange={this.setName} />
+          <Input name="initiative" type="number" value={String(this.state.initiative)} onChange={this.setInitiative} />
+          <Button onClick={this.submit} style={{ marginLeft: "20px" }}>
             Add
-          </RaisedButton>
+          </Button>
         </form>
       </div>
     )

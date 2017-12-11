@@ -4,11 +4,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/material-ui": "^0.18.5",
-    "@types/prop-types": "^15.5.2",
-    "@types/uuid": "^3.4.3",
     "gh-pages": "^1.1.0",
-    "material-ui": "^0.20.0",
+    "material-ui": "^1.0.0-beta.23",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -26,8 +23,10 @@
   "devDependencies": {
     "@types/jest": "^21.1.8",
     "@types/node": "^8.0.57",
+    "@types/prop-types": "^15.5.2",
     "@types/react": "^16.0.28",
     "@types/react-dom": "^16.0.3",
+    "@types/uuid": "^3.4.3",
     "prettier": "1.9.1"
   }
 }
