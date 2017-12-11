@@ -11,6 +11,7 @@ interface State {
 }
 
 export class CharacterForm extends React.Component<Props, State> {
+  nameInput: any
   state = {
     name: "",
     initiative: 10,
@@ -18,6 +19,9 @@ export class CharacterForm extends React.Component<Props, State> {
   submit = (e: any) => {
     e.preventDefault()
     this.props.submit(new Character(this.state))
+    this.setState({ name: "", initiative: 0 }, () => {
+      this.nameInput.focus()
+    })
   }
   setName = (e: any) => {
     let { value } = e.target
@@ -42,6 +46,7 @@ export class CharacterForm extends React.Component<Props, State> {
         <form onSubmit={this.submit} style={{ marginLeft: "auto", marginRight: "auto" }}>
           <h2>Add Character</h2>
           <TextField
+            inputRef={ref => (this.nameInput = ref)}
             fullWidth={true}
             margin="normal"
             label="Name"
