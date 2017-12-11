@@ -54,7 +54,7 @@ export const App = withStyles(styles)(
       return { logger, tracker }
     }
     render() {
-      let { classes } = this.props
+      let { classes, tracker } = this.props
       return (
         <div>
           <AppBar position="static">
@@ -68,7 +68,7 @@ export const App = withStyles(styles)(
             </Toolbar>
           </AppBar>
 
-          <InitiativeTracker characters={this.props.state.characters} />
+          <InitiativeTracker tracker={tracker} characters={this.props.state.characters} />
         </div>
       )
     }
