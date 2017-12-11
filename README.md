@@ -6,6 +6,30 @@
 
 [Paper Games](http://paper-games.github.io/paper-games) an free and open source webapp built for Game Masters.
 
+The goal of Paper Games is to provide a set of tools to help Game Masters run in-person sessions of Pen and Paper RPGs like [Pathfinder](http://paizo.com/pathfinderRPG) and [Dungeons and Dragons](http://dnd.wizards.com/). 
+
+## Getting Started
+
+Paper Games is a [React](https://reactjs.org/) application written in [Typescript](https://www.typescriptlang.org/), and bootstrapped with [`create-react-app-typescript`](https://github.com/wmonk/create-react-app-typescript). 
+
+```bash
+# Install Yarn
+npm instal -g yarn
+
+# Clone paper-games
+git clone git@github.com:paper-games/paper-games.git
+
+# Install Dependencies
+cd paper-games
+yarn install
+
+# Run the Tests
+yarn test
+
+# Start the App
+yarn start
+```
+
 ## Roadmap
 
 ### Version 1.0: Basic Initiative Tracker
