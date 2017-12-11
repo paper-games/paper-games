@@ -13,6 +13,6 @@ const initialState = loadState(logger)
 
 const targetEl: Element | null = document.getElementById("root") as HTMLElement
 
-ReactDOM.render(<App logger={logger} tracker={tracker} state={initialState} />, targetEl)
+ReactDOM.render(<App logger={logger} tracker={tracker} state={initialState} classes={[]} />, targetEl)
 
 registerServiceWorker()

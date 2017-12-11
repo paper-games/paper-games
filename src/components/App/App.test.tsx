@@ -10,5 +10,5 @@ const tracker: EventTracker = new EventTracker()
 it("renders without crashing", () => {
   const div = document.createElement("div")
 
-  ReactDOM.render(<App logger={logger} tracker={tracker} state={{ characters: [] }} />, div)
+  ReactDOM.render(<App logger={logger} tracker={tracker} state={{ characters: [] }} classes={[]} />, div)
 })

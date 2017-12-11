@@ -46,9 +46,13 @@ class CharacterRow extends React.Component<{ character: Character; remove: (char
     return (
       <TableRow key={character.name}>
         <TableCell style={initColStyle}> {character.initiative} </TableCell>
-        <TableCell style={nameColStyle}> {character.name} </TableCell>
+        <TableCell style={nameColStyle}>
+          <h3>{character.name}</h3>
+        </TableCell>
         <TableCell style={actionColStyle}>
-          <Button onClick={() => remove(character)}>Remove</Button>
+          <Button color="accent" onClick={() => remove(character)}>
+            Remove
+          </Button>
         </TableCell>
       </TableRow>
     )
