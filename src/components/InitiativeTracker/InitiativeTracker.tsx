@@ -43,7 +43,7 @@ export class InitiativeTracker extends React.Component<Props, State> {
   }
   render() {
     return (
-      <div>
+      <div style={{ marginLeft: "auto", marginRight: "auto", maxWidth: "800px" }}>
         <CharacterForm submit={this.addCharacter} />
         <InitiativeOrder characters={this.state.characters} removeCharacter={this.removeCharacter} />
       </div>
